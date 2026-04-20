@@ -1,39 +1,49 @@
-import { useState, useCallback } from 'react';
-import requests from './api';
 import Hero from './Hero';
 import Row from './Row';
-import Modal from './Modal';
 import './App.css';
 
+// ── TMDB endpoints ────────────────────────────────────────────────────────
+// All relative paths; Row.jsx appends the base URL + api_key from
+// import.meta.env.VITE_TMDB_KEY at fetch time.
+// VITE_TMDB_KEY uses the VITE_ prefix so Vite injects it into the
+// client bundle — variables without this prefix are stripped for security.
+
+const REQUESTS = {
+  // /trending/movie/week — top movies across the whole week on TMDB
+  trending: '/trending/movie/week',
+
+  // /movie/top_rated — movies with the highest average vote score
+  topRated: '/movie/top_rated',
+
+  // /discover/movie?with_genres=28 — discover endpoint filtered by Action (id 28)
+  action: '/discover/movie?with_genres=28',
+
+  // /discover/movie?with_genres=27 — discover endpoint filtered by Horror (id 27)
+  horror: '/discover/movie?with_genres=27',
+};
+
 function App() {
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
-  const handleMovieSelect = useCallback((movie) => {
-    setSelectedMovie(movie);
-  }, []);
-
-  const handeCloseModal = useCallback(() => {
-    setSelectedMovie(null);
-  }, []);
-
   return (
     <div className="app">
-      <Hero />
-      <Row title="Trending Now" fetchUrl={requests.fetchTrending} onMovieSelect={handleMovieSelect} />
-      <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} onMovieSelect={handleMovieSelect} />
-      <Row title="Top Rated" fetchUrl={requests.fetchTopRated} onMovieSelect={handleMovieSelect} />
-      <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} onMovieSelect={handleMovieSelect} />
-      <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} onMovieSelect={handleMovieSelect} />
-      <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} onMovieSelect={handleMovieSelect} />
-      <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} onMovieSelect={handleMovieSelect} />
-      <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} onMovieSelect={handleMovieSelect} />
 
-      {/* Controlled Component Pattern: The Modal is controlled entirely by its parent's state (selectedMovie) */}
-      <Modal 
-        isOpen={selectedMovie !== null} 
-        movie={selectedMovie} 
-        onClose={handeCloseModal} 
-      />
+      {/* ── Hero banner (Stage 2) — randomly picks a trending movie ── */}
+      <Hero />
+
+      {/* ── Movie rows (Stage 3) ──────────────────────────────────────
+          Each Row accepts:
+            title    → rendered as the section heading
+            fetchUrl → relative TMDB path; Row builds the full URL internally
+
+          map() note (applies to each Row internally):
+          map returns a new array of JSX elements — key prop helps React
+          identify which items changed, were added, or removed between
+          renders so it only updates the affected DOM nodes.
+      ─────────────────────────────────────────────────────────────── */}
+      <Row title="Trending Now"  fetchUrl={REQUESTS.trending} />
+      <Row title="Top Rated"     fetchUrl={REQUESTS.topRated} />
+      <Row title="Action"        fetchUrl={REQUESTS.action}   />
+      <Row title="Horror"        fetchUrl={REQUESTS.horror}   />
+
     </div>
   );
 }

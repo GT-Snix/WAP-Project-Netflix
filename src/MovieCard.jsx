@@ -1,23 +1,45 @@
 import React from 'react';
+import './MovieCard.css';
 
-const base_url = "https://image.tmdb.org/t/p/original/";
+const TMDB_IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 
-// By wrapping the component in React.memo, React will memorize the rendered output
-// and only re-render if the props change. Since we pass the same primitive values
-// and referentially equal functions (via useCallback), this prevents wasted renders
-// when the parent <Row> or <App> updates.
-const MovieCard = React.memo(({ movie, onClick }) => {
+/**
+ * MovieCard
+ * ─────────
+ * Renders a single movie poster inside a card wrapper.
+ *
+ * Hover behaviour is handled 100 % in CSS (see MovieCard.css):
+ *  - .movie-card__overlay starts at opacity 0
+ *  - :hover on the parent raises it to opacity 1
+ * No JS touchHandler / onMouseEnter needed — pure CSS transition.
+ */
+
+// React.memo prevents re-renders when the parent Row re-renders
+// but this card's `movie` prop hasn't actually changed.
+const MovieCard = React.memo(({ movie }) => {
+  const title = movie.title || movie.name || 'Untitled';
+  const posterUrl = movie.poster_path
+    ? `${TMDB_IMG_BASE}${movie.poster_path}`
+    : 'https://via.placeholder.com/342x513?text=No+Image';
+
   return (
-    <img
-      onClick={() => onClick(movie)}
-      className="row__poster"
-      src={`${base_url}${movie.poster_path}`}
-      alt={movie.name || movie.title}
-    />
+    <div className="movie-card">
+      <img
+        className="movie-card__poster"
+        src={posterUrl}
+        alt={title}
+        loading="lazy"
+      />
+
+      {/* Dark overlay — visibility controlled entirely by CSS :hover,
+          no JS state change means no extra React re-render on hover */}
+      <div className="movie-card__overlay">
+        <span className="movie-card__title">{title}</span>
+      </div>
+    </div>
   );
 });
 
-// React component display names can be lost with React.memo, this helps with debugging
 MovieCard.displayName = 'MovieCard';
 
 export default MovieCard;

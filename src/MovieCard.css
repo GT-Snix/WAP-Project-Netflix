@@ -1,0 +1,66 @@
+/* ── MovieCard ─────────────────────────────────────────────────────────────
+   The card is position:relative so the absolutely-positioned overlay can
+   sit directly on top of the poster image.
+   All hover behaviour is driven by CSS :hover — zero JS event handlers.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.movie-card {
+  position: relative;
+  flex: 0 0 auto;          /* don't shrink inside the flex row            */
+  width: 160px;
+  margin-right: 12px;
+  border-radius: 6px;
+  overflow: hidden;        /* clips poster corners AND the overlay         */
+  cursor: pointer;
+  transition: transform 400ms ease, box-shadow 400ms ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+/* ── Poster image ────────────────────────────────────────────────────────── */
+.movie-card__poster {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+/* ── Dark overlay ────────────────────────────────────────────────────────── */
+/* Starts fully transparent; CSS :hover on the parent card transitions it   */
+/* to opaque. No JS => no React re-render on every hover.                   */
+.movie-card__overlay {
+  position: absolute;
+  inset: 0;                /* shorthand for top/right/bottom/left: 0       */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.4)  60%,
+    transparent         100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 12px 8px;
+
+  /* Hidden by default */
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
+/* When the PARENT card is hovered, reveal the overlay */
+.movie-card:hover .movie-card__overlay {
+  opacity: 1;
+}
+
+/* ── Title text inside the overlay ────────────────────────────────────────── */
+.movie-card__title {
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
