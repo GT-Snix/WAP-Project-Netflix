@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
+import MovieCard from './MovieCard';
 import './Row.css';
-
-const base_url = "https://image.tmdb.org/t/p/original/";
 
 function Row({ title, fetchUrl, onMovieSelect }) {
   const [movies, setMovies] = useState([]);
@@ -39,12 +38,10 @@ function Row({ title, fetchUrl, onMovieSelect }) {
           track which items change, get added, or removed. */}
       <div className="row__posters">
         {movies.map((movie) => (
-          <img
-            key={movie.id}
-            onClick={() => onMovieSelect(movie)}
-            className="row__poster"
-            src={`${base_url}${movie.poster_path}`}
-            alt={movie.name || movie.title}
+          <MovieCard 
+            key={movie.id} 
+            movie={movie} 
+            onClick={onMovieSelect} 
           />
         ))}
       </div>
