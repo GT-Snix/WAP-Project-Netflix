@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import requests from './api';
 import Row from './Row';
 import Modal from './Modal';
@@ -7,13 +7,13 @@ import './App.css';
 function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const handleMovieSelect = (movie) => {
+  const handleMovieSelect = useCallback((movie) => {
     setSelectedMovie(movie);
-  };
+  }, []);
 
-  const handeCloseModal = () => {
+  const handeCloseModal = useCallback(() => {
     setSelectedMovie(null);
-  };
+  }, []);
 
   return (
     <div className="app">
