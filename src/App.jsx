@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import requests from './api';
+import Hero from './Hero';
 import Row from './Row';
 import Modal from './Modal';
 import './App.css';
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Netflix Clone</h1>
+      <Hero />
       <Row title="Trending Now" fetchUrl={requests.fetchTrending} onMovieSelect={handleMovieSelect} />
       <Row title="Netflix Originals" fetchUrl={requests.fetchNetflixOriginals} onMovieSelect={handleMovieSelect} />
       <Row title="Top Rated" fetchUrl={requests.fetchTopRated} onMovieSelect={handleMovieSelect} />
