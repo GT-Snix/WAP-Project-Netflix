@@ -1,4 +1,4 @@
-/* ── Row layout ──────────────────────────────────────────────────────────── */
+/* row layout */
 .row {
   margin: 0 0 36px 0;
   padding: 0 0 0 20px;
@@ -6,7 +6,8 @@
   position: relative;
 }
 
-.row__title {
+/* title */
+.title {
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -16,40 +17,35 @@
   text-transform: uppercase;
 }
 
-/* ── Wrapper holds both arrows and the scroll strip ─────────────────────── */
-.row__wrapper {
+/* wrapper */
+.wrap {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* ── Scrollable poster strip ──────────────────────────────────────────────
-   overflow-x: scroll  lets cards spill horizontally.
-   The custom scrollbar is hidden via ::-webkit-scrollbar so the row looks
-   clean; users still scroll by dragging or using the arrow buttons.        */
-.row__posters {
+/* poster strip */
+.strip {
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
   padding: 16px 8px 16px 0;
   gap: 12px;
   scroll-behavior: smooth;
-
-  /* ── Hide the native scrollbar on all engines ── */
-  scrollbar-width: none;          /* Firefox  */
-  -ms-overflow-style: none;       /* IE / Edge legacy */
-}
-.row__posters::-webkit-scrollbar {
-  display: none;                  /* Chrome / Safari / new Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* ── Arrow buttons ─────────────────────────────────────────────────────── */
-.row__arrow {
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+/* arrow buttons */
+.arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-
   background: rgba(20, 20, 20, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
@@ -58,35 +54,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: #fff;
   font-size: 1.8rem;
   line-height: 1;
   cursor: pointer;
-
   transition: background 250ms ease, box-shadow 250ms ease, transform 250ms ease;
 }
 
-.row__arrow:hover {
-  background: rgba(229, 9, 20, 0.85);   /* Netflix red on hover */
+.arrow:hover {
+  background: rgba(229, 9, 20, 0.85);
   box-shadow: 0 0 18px rgba(229, 9, 20, 0.55);
   transform: translateY(-50%) scale(1.12);
 }
 
-.row__arrow--left  { left: -22px; }
-.row__arrow--right { right: 0; }
+.arrow-left  { left: -22px; }
+.arrow-right { right: 0; }
 
-/* ── Skeleton loading cards ───────────────────────────────────────────────
-   Shown while useFetch is in the loading state.
-   Pulse animation mimics content loading without a spinner.                */
-.row__skeleton-wrapper {
+/* loading skeletons */
+.skeleton-wrap {
   display: flex;
   gap: 12px;
   padding: 16px 0;
   overflow: hidden;
 }
 
-.row__skeleton {
+.skeleton {
   flex: 0 0 auto;
   width: 160px;
   height: 240px;
@@ -101,8 +93,8 @@
   100% { background-position:   0% 50%; }
 }
 
-/* ── Error message ─────────────────────────────────────────────────────── */
-.row__error {
+/* error text */
+.error {
   color: #e87c7c;
   font-size: 0.9rem;
   padding: 12px 0;

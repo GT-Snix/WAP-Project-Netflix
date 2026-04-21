@@ -1,20 +1,18 @@
-/* ============================================================
-   Search Page
-   ============================================================ */
-
+/* search page */
 .search {
-  padding: 100px 4% 60px;    /* top padding clears the fixed Navbar */
+  padding: 100px 4% 60px;
   min-height: 100vh;
 }
 
-/* ── Search bar ───────────────────────────────────────────────── */
-.search__bar {
+/* search bar */
+.bar {
   position: relative;
   max-width: 640px;
   margin: 0 auto 40px;
 }
 
-.search__input {
+/* input */
+.input {
   width: 100%;
   padding: 16px 24px;
   padding-right: 48px;
@@ -28,17 +26,17 @@
   transition: border-color 250ms ease, box-shadow 250ms ease;
 }
 
-.search__input::placeholder {
+.input::placeholder {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.search__input:focus {
+.input:focus {
   border-color: rgba(229, 9, 20, 0.7);
   box-shadow: 0 0 20px rgba(229, 9, 20, 0.15);
 }
 
-/* ── Loading spinner ──────────────────────────────────────────── */
-.search__spinner {
+/* spinner */
+.spinner {
   position: absolute;
   right: 18px;
   top: 50%;
@@ -55,8 +53,8 @@
   to { transform: translateY(-50%) rotate(360deg); }
 }
 
-/* ── Results grid ─────────────────────────────────────────────── */
-.search__results {
+/* results grid */
+.results {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 20px;
@@ -64,22 +62,22 @@
   margin: 0 auto;
 }
 
-/* Override MovieCard width inside grid so it fills the column */
-.search__results .movie-card {
+/* grid card size */
+.results .card {
   width: 100%;
   margin-right: 0;
 }
 
-/* ── Error / empty states ─────────────────────────────────────── */
-.search__error {
+/* error / empty */
+.error {
   color: #e87c7c;
   text-align: center;
   font-size: 0.95rem;
   margin-top: 20px;
 }
 
-.search__empty,
-.search__hint {
+.empty,
+.hint {
   text-align: center;
   color: rgba(255, 255, 255, 0.4);
   font-size: 1rem;

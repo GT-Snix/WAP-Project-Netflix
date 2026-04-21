@@ -1,4 +1,5 @@
-.modal-overlay {
+/* overlay */
+.simple-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +12,8 @@
   z-index: 1000;
 }
 
-.modal {
+/* modal box */
+.simple-modal {
   background-color: #111;
   border-radius: 8px;
   padding: 40px;
@@ -22,7 +24,8 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
-.modal__close {
+/* close button */
+.simple-close {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -33,13 +36,14 @@
   cursor: pointer;
 }
 
-.modal__overview {
+/* overview text */
+.simple-overview {
   margin: 20px 0;
   line-height: 1.5;
   font-size: 16px;
 }
 
-.modal h2 {
+.simple-modal h2 {
   font-size: 28px;
   margin-bottom: 10px;
 }
