@@ -4,7 +4,8 @@ import './Navbar.css';
 /**
  * Navbar
  * ──────
- * Fixed top navigation with links to Home (/) and Search (/search).
+ * Fixed top navigation with links to Home (/), Search (/search),
+ * and My List (/watchlist).
  * useLocation() highlights the active route.
  */
 function Navbar() {
@@ -28,6 +29,12 @@ function Navbar() {
           className={`navbar__link ${pathname === '/search' ? 'navbar__link--active' : ''}`}
         >
           🔍 Search
+        </Link>
+        <Link
+          to="/watchlist"
+          className={`navbar__link ${pathname === '/watchlist' ? 'navbar__link--active' : ''}`}
+        >
+          📋 My List
         </Link>
       </div>
     </nav>
