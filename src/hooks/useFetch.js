@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 /**
  * useFetch — a reusable data-fetching hook.
  *
- * @param {string} url  The full URL to fetch.
+ * @param {string|null} url  The full URL to fetch. Pass null to skip fetching.
  * @returns {{ data: any, loading: boolean, error: string|null }}
  */
 function useFetch(url) {
@@ -12,6 +12,15 @@ function useFetch(url) {
   const [error, setError]     = useState(null);
 
   useEffect(() => {
+    // If url is null or empty, skip the fetch entirely.
+    // This is used by Search when the debounced query is empty.
+    if (!url) {
+      setData(null);
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
     // AbortController lets us cancel the in-flight fetch if the component
     // unmounts OR if `url` changes before the previous request finishes.
     // Without this, a slow response arriving after unmount would try to

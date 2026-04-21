@@ -8,6 +8,14 @@ const TMDB_IMG_BASE = 'https://image.tmdb.org/t/p/w342';
  * ─────────
  * Renders a single movie poster inside a card wrapper.
  *
+ * onClick behaviour:
+ *   When the card is clicked, it calls `onSelect(movie)` — a callback
+ *   passed down from App via Row. This is the "LIFTING STATE UP" pattern:
+ *   the child (MovieCard) doesn't own the selectedMovie state; it simply
+ *   tells the parent (App) what was clicked, and the parent decides what
+ *   to do (open the MovieModal). This keeps the source of truth in one
+ *   place and avoids multiple components trying to manage the same state.
+ *
  * Hover behaviour is handled 100 % in CSS (see MovieCard.css):
  *  - .movie-card__overlay starts at opacity 0
  *  - :hover on the parent raises it to opacity 1
@@ -16,14 +24,16 @@ const TMDB_IMG_BASE = 'https://image.tmdb.org/t/p/w342';
 
 // React.memo prevents re-renders when the parent Row re-renders
 // but this card's `movie` prop hasn't actually changed.
-const MovieCard = React.memo(({ movie }) => {
+const MovieCard = React.memo(({ movie, onSelect }) => {
   const title = movie.title || movie.name || 'Untitled';
   const posterUrl = movie.poster_path
     ? `${TMDB_IMG_BASE}${movie.poster_path}`
     : 'https://via.placeholder.com/342x513?text=No+Image';
 
   return (
-    <div className="movie-card">
+    // LIFTING STATE UP: onClick calls onSelect(movie) which propagates
+    // the clicked movie object upward to App.jsx → selectedMovie state.
+    <div className="movie-card" onClick={() => onSelect?.(movie)}>
       <img
         className="movie-card__poster"
         src={posterUrl}

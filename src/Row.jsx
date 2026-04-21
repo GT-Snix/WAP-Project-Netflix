@@ -15,8 +15,11 @@ const API_KEY = import.meta.env.VITE_TMDB_KEY;
  * Row
  * ───
  * Props:
- *   title    {string}  – Section heading shown above the row
- *   fetchUrl {string}  – Relative TMDB path, e.g. "/trending/movie/week"
+ *   title         {string}   – Section heading shown above the row
+ *   fetchUrl      {string}   – Relative TMDB path, e.g. "/trending/movie/week"
+ *   onMovieSelect {function} – Callback passed to each MovieCard; when a card
+ *                              is clicked it calls onMovieSelect(movie) which
+ *                              lifts the selected movie up to App.jsx
  *
  * Scroll arrows:
  *   We store a ref to the scrollable <div> with useRef().
@@ -28,7 +31,7 @@ const API_KEY = import.meta.env.VITE_TMDB_KEY;
  *   If we stored the DOM node in useState, every click would set state,
  *   schedule a render, diff the VDOM, and commit — all unnecessary work.
  */
-function Row({ title, fetchUrl }) {
+function Row({ title, fetchUrl, onMovieSelect }) {
   // ── Data fetching via the custom hook ────────────────────────────────────
   // useFetch handles loading, error, AbortController cleanup internally.
   // If fetchUrl already contains '?' (e.g. /discover/movie?with_genres=28),
@@ -102,7 +105,11 @@ function Row({ title, fetchUrl }) {
             of re-rendering the whole list.
           */}
           {movies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onSelect={onMovieSelect}
+            />
           ))}
         </div>
 
