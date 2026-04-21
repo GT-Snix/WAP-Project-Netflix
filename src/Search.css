@@ -1,0 +1,88 @@
+/* ============================================================
+   Search Page
+   ============================================================ */
+
+.search {
+  padding: 100px 4% 60px;    /* top padding clears the fixed Navbar */
+  min-height: 100vh;
+}
+
+/* ── Search bar ───────────────────────────────────────────────── */
+.search__bar {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+
+.search__input {
+  width: 100%;
+  padding: 16px 24px;
+  padding-right: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(30, 30, 30, 0.9);
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 250ms ease, box-shadow 250ms ease;
+}
+
+.search__input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.search__input:focus {
+  border-color: rgba(229, 9, 20, 0.7);
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.15);
+}
+
+/* ── Loading spinner ──────────────────────────────────────────── */
+.search__spinner {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #e50914;
+  border-radius: 50%;
+  animation: search-spin 0.6s linear infinite;
+}
+
+@keyframes search-spin {
+  to { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ── Results grid ─────────────────────────────────────────────── */
+.search__results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Override MovieCard width inside grid so it fills the column */
+.search__results .movie-card {
+  width: 100%;
+  margin-right: 0;
+}
+
+/* ── Error / empty states ─────────────────────────────────────── */
+.search__error {
+  color: #e87c7c;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 20px;
+}
+
+.search__empty,
+.search__hint {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1rem;
+  margin-top: 60px;
+  letter-spacing: 0.02em;
+}
