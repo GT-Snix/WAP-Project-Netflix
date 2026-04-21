@@ -1,7 +1,4 @@
-/* ============================================================
-   Navbar — fixed top bar
-   ============================================================ */
-
+/* top bar */
 .navbar {
   position: fixed;
   top: 0;
@@ -20,23 +17,25 @@
   transition: background 300ms ease;
 }
 
-/* ── Brand text ───────────────────────────────────────────────── */
-.navbar__brand {
-  font-size: 1.6rem;
+/* brand */
+.navbar .brand {
+  /* font-size: 1.6rem;
   font-weight: 800;
-  color: #e50914;
-  text-decoration: none;
-  letter-spacing: 2px;
+  color: #e50914; */
+  /* text-decoration: none;
+  letter-spacing: 2px; */
+  height: 1.6rem;
+  width: 150px;
 }
 
-/* ── Nav links ────────────────────────────────────────────────── */
-.navbar__links {
+/* links */
+.navbar .links {
   display: flex;
   gap: 24px;
   align-items: center;
 }
 
-.navbar__link {
+.navbar .link {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 0.92rem;
@@ -45,11 +44,11 @@
   transition: color 200ms ease;
 }
 
-.navbar__link:hover {
+.navbar .link:hover {
   color: #fff;
 }
 
-.navbar__link--active {
+.navbar .link-active {
   color: #fff;
   font-weight: 700;
 }

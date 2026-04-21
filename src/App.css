@@ -1,8 +1,8 @@
-/* App-level layout — everything else lives in component CSS files */
 
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  padding-top: 0;
 }

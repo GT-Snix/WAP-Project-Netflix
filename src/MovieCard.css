@@ -1,40 +1,33 @@
-/* ── MovieCard ─────────────────────────────────────────────────────────────
-   The card is position:relative so the absolutely-positioned overlay can
-   sit directly on top of the poster image.
-   All hover behaviour is driven by CSS :hover — zero JS event handlers.
-   ────────────────────────────────────────────────────────────────────────── */
-
-.movie-card {
+/* card */
+.card {
   position: relative;
-  flex: 0 0 auto;          /* don't shrink inside the flex row            */
+  flex: 0 0 auto;
   width: 160px;
   margin-right: 12px;
   border-radius: 6px;
-  overflow: hidden;        /* clips poster corners AND the overlay         */
+  overflow: hidden;
   cursor: pointer;
   transition: transform 400ms ease, box-shadow 400ms ease;
 }
 
-.movie-card:hover {
+.card:hover {
   transform: scale(1.07);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
   z-index: 2;
 }
 
-/* ── Poster image ────────────────────────────────────────────────────────── */
-.movie-card__poster {
+/* poster */
+.poster {
   display: block;
   width: 100%;
   height: 240px;
   object-fit: cover;
 }
 
-/* ── Dark overlay ────────────────────────────────────────────────────────── */
-/* Starts fully transparent; CSS :hover on the parent card transitions it   */
-/* to opaque. No JS => no React re-render on every hover.                   */
-.movie-card__overlay {
+/* overlay */
+.overlay {
   position: absolute;
-  inset: 0;                /* shorthand for top/right/bottom/left: 0       */
+  inset: 0;
   background: linear-gradient(
     to top,
     rgba(0, 0, 0, 0.92) 0%,
@@ -44,19 +37,16 @@
   display: flex;
   align-items: flex-end;
   padding: 12px 8px;
-
-  /* Hidden by default */
   opacity: 0;
   transition: opacity 350ms ease;
 }
 
-/* When the PARENT card is hovered, reveal the overlay */
-.movie-card:hover .movie-card__overlay {
+.card:hover .overlay {
   opacity: 1;
 }
 
-/* ── Title text inside the overlay ────────────────────────────────────────── */
-.movie-card__title {
+/* title */
+.title {
   color: #ffffff;
   font-size: 0.78rem;
   font-weight: 600;
@@ -65,11 +55,8 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* ── Watchlist toggle button (+/✓) ────────────────────────────────────────
-   Positioned at top-left of the card.
-   Visible on hover; always visible when active (movie is in watchlist).
-   ────────────────────────────────────────────────────────────────────────── */
-.movie-card__watchlist-btn {
+/* watch button */
+.watch-btn {
   position: absolute;
   top: 8px;
   left: 8px;
@@ -86,30 +73,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Hidden by default, shown on card hover */
   opacity: 0;
   transform: scale(0.85);
   transition: opacity 250ms ease, transform 250ms ease,
               background 200ms ease, border-color 200ms ease;
 }
 
-/* Show button on card hover */
-.movie-card:hover .movie-card__watchlist-btn {
+.card:hover .watch-btn {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Always show the button if movie is in watchlist (active state) */
-.movie-card__watchlist-btn--active {
+/* watch active */
+.watch-btn-active {
   opacity: 1;
   transform: scale(1);
   background: rgba(229, 9, 20, 0.85);
   border-color: rgba(229, 9, 20, 0.9);
 }
 
-/* Hover effect on the button itself */
-.movie-card__watchlist-btn:hover {
+.watch-btn:hover {
   background: rgba(229, 9, 20, 0.9);
   border-color: #e50914;
   transform: scale(1.1);

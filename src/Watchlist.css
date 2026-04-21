@@ -1,13 +1,11 @@
-/* ============================================================
-   Watchlist Page
-   ============================================================ */
-
+/* watchlist page */
 .watchlist {
-  padding: 100px 4% 60px;    /* top padding clears the fixed Navbar */
+  padding: 100px 4% 60px;
   min-height: 100vh;
 }
 
-.watchlist__heading {
+/* heading */
+.heading {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 700;
   color: #fff;
@@ -15,22 +13,22 @@
   letter-spacing: -0.3px;
 }
 
-/* ── Movie grid ───────────────────────────────────────────────── */
-.watchlist__grid {
+/* grid */
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 20px;
   max-width: 1200px;
 }
 
-/* Override MovieCard width inside grid so it fills the column */
-.watchlist__grid .movie-card {
+/* card size in grid */
+.grid .card {
   width: 100%;
   margin-right: 0;
 }
 
-/* ── Empty state ──────────────────────────────────────────────── */
-.watchlist__empty {
+/* empty state */
+.empty {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,13 +37,13 @@
   text-align: center;
 }
 
-.watchlist__empty-text {
+.empty-text {
   font-size: 1.4rem;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
 }
 
-.watchlist__empty-hint {
+.empty-hint {
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.35);
   max-width: 340px;

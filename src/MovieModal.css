@@ -1,9 +1,5 @@
-/* ============================================================
-   MovieModal — Portal-rendered modal overlay
-   ============================================================ */
-
-/* ── Full-screen overlay backdrop ─────────────────────────────── */
-.modal-overlay {
+/* overlay */
+.movie-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
@@ -12,18 +8,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;        /* highest layer — portal sits outside #root */
+  z-index: 9999;
   padding: 24px;
-  animation: modal-fade-in 0.25s ease-out;
+  animation: fade-in 0.25s ease-out;
 }
 
-@keyframes modal-fade-in {
+@keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-/* ── Modal card ───────────────────────────────────────────────── */
-.modal {
+/* modal card */
+.movie-modal {
   position: relative;
   background: #181818;
   border-radius: 12px;
@@ -32,23 +28,22 @@
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 16px 60px rgba(0, 0, 0, 0.8);
-  animation: modal-slide-up 0.3s ease-out;
-
-  /* Hide scrollbar but keep scroll functional */
+  animation: slide-up 0.3s ease-out;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.modal::-webkit-scrollbar {
+
+.movie-modal::-webkit-scrollbar {
   display: none;
 }
 
-@keyframes modal-slide-up {
+@keyframes slide-up {
   from { transform: translateY(40px); opacity: 0; }
   to   { transform: translateY(0);    opacity: 1; }
 }
 
-/* ── Close button ─────────────────────────────────────────────── */
-.modal__close {
+/* close button */
+.movie-close {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -67,13 +62,13 @@
   transition: background 200ms ease, transform 200ms ease;
 }
 
-.modal__close:hover {
+.movie-close:hover {
   background: rgba(229, 9, 20, 0.9);
   transform: scale(1.1);
 }
 
-/* ── Backdrop image ───────────────────────────────────────────── */
-.modal__backdrop {
+/* banner image */
+.movie-banner {
   width: 100%;
   height: 340px;
   background-size: cover;
@@ -83,8 +78,8 @@
   position: relative;
 }
 
-/* Gradient fade at bottom of backdrop so text reads clearly */
-.modal__backdrop::after {
+/* banner fade */
+.movie-banner::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -95,15 +90,16 @@
   );
 }
 
-/* ── Body content ─────────────────────────────────────────────── */
-.modal__body {
+/* body */
+.movie-body {
   padding: 0 32px 32px;
-  margin-top: -40px;     /* overlap the gradient slightly */
+  margin-top: -40px;
   position: relative;
   z-index: 1;
 }
 
-.modal__title {
+/* title */
+.movie-title {
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
   color: #fff;
@@ -112,53 +108,53 @@
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* ── Meta row: date + rating ──────────────────────────────────── */
-.modal__meta {
+/* meta */
+.movie-meta {
   display: flex;
   gap: 20px;
   margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
-.modal__date,
-.modal__rating {
+.movie-date,
+.movie-rating {
   font-size: 0.92rem;
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.02em;
 }
 
-.modal__rating {
-  color: #46d369;    /* Netflix green for ratings */
+.movie-rating {
+  color: #46d369;
   font-weight: 600;
 }
 
-/* ── Genres ────────────────────────────────────────────────────── */
-.modal__genres {
+/* genres */
+.movie-genres {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.55);
   margin-bottom: 16px;
   letter-spacing: 0.04em;
 }
 
-/* ── Overview ─────────────────────────────────────────────────── */
-.modal__overview {
+/* overview */
+.movie-overview {
   font-size: 0.95rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.82);
   margin-bottom: 24px;
 }
 
-/* ── YouTube trailer ──────────────────────────────────────────── */
-.modal__trailer {
+/* trailer */
+.movie-trailer {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;     /* 16:9 aspect ratio */
+  padding-top: 56.25%;
   border-radius: 8px;
   overflow: hidden;
   background: #000;
 }
 
-.modal__iframe {
+.movie-video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -166,13 +162,13 @@
   border: none;
 }
 
-/* ── Responsive tweaks ────────────────────────────────────────── */
+/* small screens */
 @media (max-width: 600px) {
-  .modal__backdrop {
+  .movie-banner {
     height: 200px;
   }
 
-  .modal__body {
+  .movie-body {
     padding: 0 20px 24px;
   }
 }
