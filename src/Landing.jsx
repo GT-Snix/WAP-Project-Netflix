@@ -14,7 +14,7 @@ function Landing() {
 
     if (!emailOk) {
         setEmailError('Please enter a valid email address.');
-        console.log('[Landing] invalid email:', cleanEmail);
+        console.log('invalid email:', cleanEmail);
         return;
     }
 
@@ -63,7 +63,7 @@ function Landing() {
           <h2 className="feature-title-lg">Enjoy on your TV.</h2>
           <p className="feature-subtext">
             Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
-            Blu‑ray players and more.
+            Blu-ray players and more.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ function Landing() {
       <section className="feature-grid">
         <div className="feature-card">
           <h3 className="feature-title">Ultra HD</h3>
-          <p className="feature-text">Crystal‑clear streaming on supported devices.</p>
+          <p className="feature-text">Crystal-clear streaming on supported devices.</p>
         </div>
         <div className="feature-card">
           <h3 className="feature-title">Offline</h3>
@@ -101,7 +101,22 @@ function Landing() {
       <section className="cta">
         <h2 className="cta-title">Start your free trial</h2>
         <p className="cta-text">No credit card required. Cancel anytime.</p>
-        <button className="btn btn-primary">Start Trial</button>
+        <div className="hero-form">
+            <input
+              className={`hero-input ${emailError ? 'hero-input-error' : ''}`}
+              type="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (emailError) setEmailError('');
+              }}
+            />
+            <button className="btn btn-primary" onClick={handleStart}>
+              Get Started
+            </button>
+          </div>
+        {emailError && <div className="hero-error">{emailError}</div>}
       </section>
 
       <footer className="footer">
