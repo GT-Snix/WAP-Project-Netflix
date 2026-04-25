@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
+import logo from './assets/logo.png';
 
 function Navbar() {
   const { pathname } = useLocation();
@@ -7,7 +8,7 @@ function Navbar() {
   return (
     <nav className="navbar" id="main-navbar">
       <Link to="/" className="brand">
-        <img src="./src/assets/logo.png" alt="sumn" />
+        <img src={logo} alt="logo" />
       </Link>
 
       <div className="links">
