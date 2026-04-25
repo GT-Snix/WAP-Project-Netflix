@@ -16,7 +16,9 @@
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  animation: banner-zoom 8s ease-out forwards;
+  opacity: 0;
+  animation: bannerFadeIn 700ms ease-in-out forwards, banner-zoom 8s ease-out forwards;
+  /* animation: banner-zoom 8s ease-out forwards; */
 }
 
 @keyframes banner-zoom {
@@ -138,4 +140,14 @@
   justify-content: center;
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.95rem;
+}
+
+@keyframes bannerFadeIn {
+  from { 
+    /* transform: scale(1.06); */
+  }
+  to {
+    /* transform: scale(1); */
+    opacity: 1;
+  }
 }

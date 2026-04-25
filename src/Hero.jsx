@@ -14,7 +14,7 @@ function Hero() {
   useEffect(() => {
     let interval = setInterval(() => {
       setMov((prev) => {
-        return (prev + 1) % 3
+        return (prev + 1) % 6
       });
     }, 5000);
 
@@ -34,7 +34,7 @@ function Hero() {
       </div>
     );
   }
-
+  console.log(data)
   const movie = data.results[mov];
   const title = movie.title || movie.name || 'Untitled';
   const backdropUrl = movie.backdrop_path
@@ -52,9 +52,9 @@ function Hero() {
       {backdropUrl && (
         <div
           className="banner-bg"
+          key={movie.id}
           style={{ backgroundImage: `url(${backdropUrl})` }}
           role="img"
-          loading="lazy"
         />
       )}
 
