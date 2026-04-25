@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Hero from './Hero';
 import Row from './Row';
 import Search from './Search';
 import Watchlist from './Watchlist';
 import MovieModal from './MovieModal';
+import Landing from './Landing';
 import './App.css';
 
 const REQUESTS = {
@@ -23,8 +24,10 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/" element={<Landing />} />
+
         <Route
-          path="/"
+          path="/app"
           element={
             <>
               <Hero />

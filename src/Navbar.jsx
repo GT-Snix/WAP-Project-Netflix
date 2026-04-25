@@ -12,8 +12,8 @@ function Navbar() {
 
       <div className="links">
         <Link
-          to="/"
-          className={`link ${pathname === '/' ? 'link-active' : ''}`}
+          to="/app"
+          className={`link ${pathname === '/app' ? 'link-active' : ''}`}
         >
           Home
         </Link>
