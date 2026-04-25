@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Landing.css';
-import backdrop from './assets/backdrop_landing.png';
+import backdrop from './assets/backdrop_landing.webp';
 
 function Landing() {
   const [email, setEmail] = useState('');
